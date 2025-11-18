@@ -21,6 +21,17 @@ jobs:
       - name: Install schemachange
         run: |
           pip install schemachange
+          name: Debug print secrets
+        run: |
+          echo "ACCOUNT = $SNOWFLAKE_ACCOUNT"
+          echo "USER = $SNOWFLAKE_USER"
+          echo "ROLE = $SNOWFLAKE_ROLE"
+          echo "WH = $SNOWFLAKE_WAREHOUSE"
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
 
       - name: Run schemachange migrations
         env:
